@@ -1,0 +1,6 @@
+#horizontalNav{
+    height: 50px;
+    background-color: rgb(249, 246, 238);
+    width: 100%;
+    display: flex;
+}
