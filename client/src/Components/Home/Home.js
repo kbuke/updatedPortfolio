@@ -72,17 +72,19 @@ export default function Home(){
                     src={profileDetails?.image}
                     id="kaanPicture"
                 />
-
-                <div 
-                    id="strip"
-                />
             </div>
+
+            <div 
+                id="strip"
+            />
 
             <TechStack 
                 appData={appData}
             />
 
-            <ProjectPortfolio />
+            <ProjectPortfolio 
+                appData={appData}
+            />
         </div>
     )
 }

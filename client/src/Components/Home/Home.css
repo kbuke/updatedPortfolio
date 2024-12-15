@@ -2,7 +2,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     margin-top: 0px;
     display: flex; /* Flex container */
     flex-direction: column; /* Layout items in a row */
@@ -18,7 +18,7 @@
     width: 100%;
     display: flex;
     border-bottom: solid;
-    height: 600px;
+    height: 1000px;
 }
 
 #strip {
@@ -46,7 +46,7 @@
 }
 
 #kaanPicture {
-    height: 600px;
+    height: 500px;
     width: 450px;
     color: white;
     position: absolute;
@@ -60,6 +60,7 @@
 
 #userInfoBox{
     width: 100%;
+    height: 460px;
 }
 
 

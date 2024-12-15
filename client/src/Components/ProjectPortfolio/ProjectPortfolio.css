@@ -1,5 +1,46 @@
-#projectPortfolioContainer{
+#projectPortfolioContainer {
     width: 94%;
-    border: solid;
     margin-bottom: 10px;
+}
+
+.projectContainer {
+    position: relative; /* Ensures contained positioning for .projectImg */
+    width: 500px; /* Match .laptopPng width */
+    height: 300px; /* Match .laptopPng height */
+    text-align: center;
+}
+
+.laptopPng {
+    height: 100%; /* Maintain aspect ratio within .projectContainer */
+    width: 100%;
+}
+
+.projectImg {
+    width: 370px;
+    height: 200px;
+    position: absolute; /* Position relative to .projectContainer */
+    left: 65px;
+    top: 15px; /* Adjust this value as needed */
+}
+
+#projectGrid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 40px;
+}
+
+#projectLinkContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 10px;
+}
+
+
+.projectIcon{
+    height: 40px;
+    width: 40px;
+    color: black;
 }
