@@ -1,0 +1,99 @@
+#infoContainer {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    height: 100vh;
+    margin-top: 0px;
+    display: flex; /* Flex container */
+    flex-direction: column; /* Layout items in a row */
+    position: relative; /* For positioning the strip */
+    z-index: 1;
+    padding-right: 10px; /* Creates space on the right side for the strip */
+}
+
+#userIntroContainer{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 0px;
+    width: 100%;
+    display: flex;
+    border-bottom: solid;
+    height: 600px;
+}
+
+#strip {
+    height: 100vh;
+    background-color: red;
+    width: 20px;
+    position: absolute; /* Position the strip absolutely */
+    right: 50px; /* Align it to the right, with a 10px gap */
+    top: 0; /* Make sure it spans the entire height */
+}
+
+.profileName, .profileSurname {
+    font-weight: 400;
+    font-size: 300%;
+}
+
+.profileName,
+.profileSurname{
+    margin-bottom: 0px;
+}
+
+.profileSurname{
+    margin-top: 0px;
+    margin-left: 80px;
+}
+
+#kaanPicture {
+    height: 600px;
+    width: 450px;
+    color: white;
+    position: absolute;
+    border-radius: 20px;
+    right: 35px;
+    top: 35px;
+    /* position: relative; Ensure picture can overlap strip */
+    z-index: 2; /* Ensure picture overlaps strip */
+    /* margin-right: -30px; Adjust the margin to make the image overlap the strip */
+}
+
+#userInfoBox{
+    width: 100%;
+}
+
+
+
+#emailOptionContainer{
+    width: 58%;
+    display: "flex";
+    display: flex;
+    justify-content: center;
+}
+
+.outerContact{
+    height: 130px;
+    width: 130px;
+    justify-self: center;
+    border-radius: 50%;
+    background-color: rgb(128, 0, 32);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+    position: absolute;
+    margin-left: 70px;
+}
+
+.innerContact{
+    height: 100px;
+    width: 100px;
+    justify-self: center;
+    border-radius: 50%;
+    background-color: rgb(215, 0, 64);
+    text-align: center;
+}
+
+
+

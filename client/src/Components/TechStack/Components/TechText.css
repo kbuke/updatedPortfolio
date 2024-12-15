@@ -1,0 +1,12 @@
+#techStackGrid{
+    display: grid;
+    width: 91%;
+    margin-left: 15px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.techName {
+    font-weight: bold;
+}

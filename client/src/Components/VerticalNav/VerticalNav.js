@@ -4,23 +4,28 @@ import "./VerticalNav.css"
 import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
-export default function VerticalNav(){
-    return(
-        <div
-            id="verticalNavBar"
-        >
-            <FaGithub 
-                className="socialImg"
-            />
+export default function VerticalNav({ userProfile }) {
+    console.log(userProfile);
 
-            <FaLinkedin 
-                className="socialImg"
-            />
+    const userInfo = userProfile ? userProfile[0] : null;
 
-            <FaInstagram 
-                className="socialImg"
-            />
+    const userLinkden = userInfo?.linkdn_link;
+    const userInsta = userInfo?.insta_link;
+    const userGit = userInfo?.git_hub_link;
+
+    return (
+        <div id="verticalNavBar">
+            <a href={userGit} className="socialLinks">
+                <FaGithub className="socialImg" />
+            </a>
+            <a href={userLinkden} className="socialLinks">
+                <FaLinkedin className="socialImg" />
+            </a>
+            <a href={userInsta} className="socialLinks">
+                <FaInstagram className="socialImg" />
+            </a>
         </div>
-    )
+    );
 }
