@@ -1,0 +1,15 @@
+
+
+#newProjectContainer{
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    border-radius: 24px;
+    background-color: wheat;
+    gap: 10px;
+}
+
+.newProjectInput{
+    margin-left: 10px;
+    margin-right: 10px;
+}

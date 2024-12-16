@@ -5,16 +5,26 @@ import { useEffect, useState } from "react"
 
 import ProjectStack from "./Components/ProjectStack"
 import ProjectPoints from "./Components/ProjectPoints"
+import AddProject from "./Components/AddProject"
+import NewProjectPoint from "./Components/NewProjectPoint"
 
 import { FaGithub } from "react-icons/fa";
 import { AiFillMediumCircle } from "react-icons/ai";
 import { TbWorldWww } from "react-icons/tb";
+import { FaPlus } from "react-icons/fa";
+
 import { Link } from "react-router-dom"
 
 export default function ProjectPortfolio({
     appData
 }){
+    const loggedUser = appData.loggedUser
+
     const projectPortfolio = appData.projectPortfolio
+    const setProjectPortfolio = appData.setProjectPortfolio
+
+    console.log(projectPortfolio)
+
     const [sortProjects, setSortProjects] = useState([])
 
     const projectStack = appData.projectStack
@@ -22,6 +32,21 @@ export default function ProjectPortfolio({
 
     const projectPoints = appData.projectPoints
     const setPojectPoints = appData.setProjectPoints
+
+    const allInstitutes = appData.allInstitutes
+    const setAllInstitutes = appData.setAllInstitutes
+
+    const [newProject, setNewProject] = useState(false)
+
+    const [addPoint, setAddPoint] = useState(false)
+    const [projectId, setProjectId] = useState()
+
+    console.log(sortProjects)
+
+    const addProjectPoints = (projectId) => {
+        setAddPoint(true)
+        setProjectId(projectId)
+    }
 
     useEffect(() => (
         setSortProjects(projectPortfolio.sort((a, b) => new Date(b.start_date) - new Date(a. start_date)))
@@ -35,20 +60,37 @@ export default function ProjectPortfolio({
         const blogLink = project.blog_link;
     
         const isLastProject = index === sortProjects.length - 1;
+
+        const addPoints = 
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "20px"
+                }}
+            >
+                <p>Add Points</p>
+                <FaPlus 
+                    style={{
+                        cursor: "pointer"
+                    }}
+                    onClick={() => addProjectPoints(projectId)}
+                />
+            </div>
     
         return (
             <div
-                key={index} // Add a unique key
+                key={index} // Use the index as a unique key
                 style={{
                     marginLeft: "20px"
                 }}
             >
-                {projectId % 2 === 1 ? (
+                {index % 2 === 0 ? ( // Alternate layout based on index
                     <div
                         id="projectGrid"
                         className={!isLastProject ? "dashedBorder" : ""} // Apply class conditionally
                     >
-                        {/* First half of the projectGrid code */}
                         <div className="projectContainer">
                             <img src={laptop} className="laptopPng" />
                             <img src={projectImg} className="projectImg" />
@@ -64,16 +106,16 @@ export default function ProjectPortfolio({
                                 projectPoints={projectPoints}
                             />
                             <div id="projectLinkContainer">
-                                {gitLink ? (
+                                {gitLink && (
                                     <Link to={gitLink} className="projectLinks">
                                         <FaGithub className="projectIcon" />
                                     </Link>
-                                ) : null}
-                                {blogLink ? (
+                                )}
+                                {blogLink && (
                                     <Link to={blogLink} className="projectLinks">
                                         <AiFillMediumCircle className="projectIcon" />
                                     </Link>
-                                ) : null}
+                                )}
                             </div>
                         </div>
                     </div>
@@ -82,7 +124,6 @@ export default function ProjectPortfolio({
                         id="projectGrid"
                         className={!isLastProject ? "dashedBorder" : ""} // Apply class conditionally
                     >
-                        {/* Second half of the projectGrid code */}
                         <div>
                             <h2>{projectName}</h2>
                             <ProjectPoints
@@ -92,17 +133,23 @@ export default function ProjectPortfolio({
                                 projectPoints={projectPoints}
                             />
                             <div id="projectLinkContainer">
-                                {gitLink ? (
+                                {gitLink && (
                                     <Link to={gitLink} className="projectLinks">
                                         <FaGithub className="projectIcon" />
                                     </Link>
-                                ) : null}
-                                {blogLink ? (
+                                )}
+                                {blogLink && (
                                     <Link to={blogLink} className="projectLinks">
                                         <AiFillMediumCircle className="projectIcon" />
                                     </Link>
-                                ) : null}
+                                )}
                             </div>
+
+                            {loggedUser ?
+                                addPoints
+                                :
+                                null
+                            }
                         </div>
                         <div className="projectContainer">
                             <img src={laptop} className="laptopPng" />
@@ -113,12 +160,47 @@ export default function ProjectPortfolio({
                 )}
             </div>
         );
-    });
+    });    
            
 
     return(
         <div>
-            <h1>Project Portfolio</h1>
+            {addPoint?
+                <NewProjectPoint 
+                    projectId={projectId}
+                    setAddPoint={setAddPoint}
+                    projectPoints={projectPoints}
+                    setProjectPoints={setPojectPoints}
+                />
+                :
+                null
+            }
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: "40px",
+                    cursor: "pointer"
+                }}
+            >
+                {newProject ?
+                    <AddProject 
+                        setNewProject={setNewProject}
+                        projectPortfolio={projectPortfolio}
+                        setProjectPortfolio={setProjectPortfolio}
+                        allInstitutes={allInstitutes}
+                        setAllInstitutes={setAllInstitutes}
+                    />
+                    :
+                    null
+                }
+
+                <h1>Project Portfolio</h1>
+                <FaPlus 
+                    onClick={() => setNewProject(true)}
+                />
+            </div>
             <div
                 id="projectPortfolioContainer"
             >

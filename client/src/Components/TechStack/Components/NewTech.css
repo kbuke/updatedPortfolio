@@ -13,4 +13,20 @@
 #newTechContainer{
     background-color: white;
     width: 60%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stackInput{
+    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+#stackButtonGrid{
+    margin-bottom: 10px;
+    gap: 10px;
+    display: flex;
+    justify-content: center;
 }

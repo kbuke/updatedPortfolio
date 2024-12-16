@@ -3,16 +3,13 @@ import { useEffect, useState } from "react";
 
 export default function ProjectPoints({
     projectId,
-    projectName,
-    gitLink,
-    blogLink,
     projectPoints
 }){
     const [specificPoints, setSpecificPoints] = useState([])
 
     useEffect(() => (
         setSpecificPoints(projectPoints.filter(points => points.project_id === projectId))
-    ), [])
+    ), [projectPoints])
 
     console.log(specificPoints)
 

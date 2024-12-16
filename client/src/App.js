@@ -12,6 +12,7 @@ function App() {
   const [projectStack, setProjectStack] = useState([])
   const [projectPoints, setProjectPoints] = useState([])
   const [loggedUser, setLoggedUser] = useState()
+  const [allInstitutes, setAllInstitutes] = useState([])
 
   const [viewCv, setViewCv] = useState(false)
 
@@ -117,7 +118,19 @@ function App() {
     })
   }, [])
 
-  console.log(loggedUser)
+  //Fetch all institutes
+  useEffect(() => {
+    fetch("/institutes")
+    .then(r => {
+      if(r.ok){
+        return r.json()
+      }
+      throw r 
+    })
+    .then(institutes => setAllInstitutes(institutes))
+  }, [])
+
+  console.log(projectPortfolio)
 
   return (
     <div id="app-layout">
@@ -153,7 +166,10 @@ function App() {
             setViewCv: setViewCv,
 
             loggedUser: loggedUser,
-            setLoggedUser: setLoggedUser
+            setLoggedUser: setLoggedUser,
+
+            allInstitutes: allInstitutes,
+            setAllInstitutes: setAllInstitutes
           }}/>
         </main>
       </div>
