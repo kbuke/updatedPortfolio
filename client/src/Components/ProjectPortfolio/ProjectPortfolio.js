@@ -59,6 +59,7 @@ export default function ProjectPortfolio({
         const gitLink = project.git_hub_link;
         const blogLink = project.blog_link;
         const webLink = project.web_link;
+        console.log(webLink)
     
         const isLastProject = index === sortProjects.length - 1;
 

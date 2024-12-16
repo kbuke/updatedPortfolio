@@ -36,7 +36,8 @@ export default function AddProject({
             blogLink,
             startDate,
             endDate,
-            instituteId
+            instituteId,
+            webLink
         }
         fetch("/projects", {
             method: "POST",
