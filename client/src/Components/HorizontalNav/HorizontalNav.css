@@ -5,3 +5,20 @@
     display: flex;
     flex-shrink: 0;
 }
+
+#cvContainer{
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    right: 20px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 20px;
+    color: white;
+    background-color: rgb(100, 149, 237);
+    width: 140px;
+    justify-content: center;
+    margin-top: 5px;
+    cursor: pointer;
+    height: 40px;
+}

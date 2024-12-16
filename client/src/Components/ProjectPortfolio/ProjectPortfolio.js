@@ -28,139 +28,93 @@ export default function ProjectPortfolio({
     ), [projectPortfolio])
 
     const renderProjects = sortProjects.map((project, index) => {
-        const projectId = project.id 
-        const projectName = project.name 
-        const projectImg = project.image 
-        const gitLink = project.git_hub_link 
-        const blogLink = project.blog_link
-
+        const projectId = project.id;
+        const projectName = project.name;
+        const projectImg = project.image;
+        const gitLink = project.git_hub_link;
+        const blogLink = project.blog_link;
+    
+        const isLastProject = index === sortProjects.length - 1;
+    
         return (
-            <div>
+            <div
+                key={index} // Add a unique key
+                style={{
+                    marginLeft: "20px"
+                }}
+            >
                 {projectId % 2 === 1 ? (
                     <div
                         id="projectGrid"
+                        className={!isLastProject ? "dashedBorder" : ""} // Apply class conditionally
                     >
+                        {/* First half of the projectGrid code */}
                         <div className="projectContainer">
-                            <img 
-                                src={laptop} 
-                                className="laptopPng" 
-                            />
-                            <img 
-                                src={projectImg} 
-                                className="projectImg" 
-                            />
-                            <ProjectStack 
-                                projectId={projectId} 
-                                projectStack={projectStack}
-                            />
+                            <img src={laptop} className="laptopPng" />
+                            <img src={projectImg} className="projectImg" />
+                            <ProjectStack projectId={projectId} projectStack={projectStack} />
                         </div>
-
                         <div>
                             <h2>{projectName}</h2>
-
-                            <ProjectPoints 
+                            <ProjectPoints
                                 projectId={projectId}
                                 projectName={projectName}
                                 gitLink={gitLink}
                                 blogLink={blogLink}
                                 projectPoints={projectPoints}
                             />
-
-                            <div
-                                id="projectLinkContainer"
-                            >
-                                {gitLink ? 
-                                    <Link
-                                        to={gitLink}
-                                        className="projectLinks"
-                                    >
-                                        <FaGithub 
-                                            className="projectIcon"
-                                        />
+                            <div id="projectLinkContainer">
+                                {gitLink ? (
+                                    <Link to={gitLink} className="projectLinks">
+                                        <FaGithub className="projectIcon" />
                                     </Link>
-                                    :
-                                    null
-                                }
-
-                                {blogLink ?
-                                    <Link
-                                        to={blogLink}
-                                        className="projectLinks"
-                                    >
-                                        <AiFillMediumCircle 
-                                            className="projectIcon"
-                                        />
+                                ) : null}
+                                {blogLink ? (
+                                    <Link to={blogLink} className="projectLinks">
+                                        <AiFillMediumCircle className="projectIcon" />
                                     </Link>
-                                    :
-                                    null
-                                }
+                                ) : null}
                             </div>
                         </div>
                     </div>
-                ) : 
+                ) : (
                     <div
                         id="projectGrid"
+                        className={!isLastProject ? "dashedBorder" : ""} // Apply class conditionally
                     >
+                        {/* Second half of the projectGrid code */}
                         <div>
                             <h2>{projectName}</h2>
-
-                            <ProjectPoints 
+                            <ProjectPoints
                                 projectId={projectId}
                                 gitLink={gitLink}
                                 blogLink={blogLink}
                                 projectPoints={projectPoints}
                             />
-
-                            <div
-                                id="projectLinkContainer"
-                            >
-                                {gitLink ?
-                                    <Link
-                                        to={gitLink}
-                                        className="projectLinks"
-                                    >
-                                        <FaGithub 
-                                            className="projectIcon"
-                                        />
+                            <div id="projectLinkContainer">
+                                {gitLink ? (
+                                    <Link to={gitLink} className="projectLinks">
+                                        <FaGithub className="projectIcon" />
                                     </Link>
-                                    :
-                                    null
-                                }
-
-                                {blogLink ?
-                                    <Link
-                                        to={blogLink}
-                                        className="projectLinks"
-                                    >
-                                        <AiFillMediumCircle 
-                                            className="projectIcon"
-                                        />
+                                ) : null}
+                                {blogLink ? (
+                                    <Link to={blogLink} className="projectLinks">
+                                        <AiFillMediumCircle className="projectIcon" />
                                     </Link>
-                                    :
-                                    null
-                                }
+                                ) : null}
                             </div>
                         </div>
-
                         <div className="projectContainer">
-                            <img 
-                                src={laptop} 
-                                className="laptopPng" 
-                            />
-                            <img 
-                                src={projectImg} 
-                                className="projectImg" 
-                            />
-                            <ProjectStack 
-                                projectId={projectId} 
-                                projectStack={projectStack}
-                            />
+                            <img src={laptop} className="laptopPng" />
+                            <img src={projectImg} className="projectImg" />
+                            <ProjectStack projectId={projectId} projectStack={projectStack} />
                         </div>
                     </div>
-                }
+                )}
             </div>
         );
-    })        
+    });
+           
 
     return(
         <div>

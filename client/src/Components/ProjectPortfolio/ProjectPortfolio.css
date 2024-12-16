@@ -1,6 +1,6 @@
 #projectPortfolioContainer {
     width: 94%;
-    margin-bottom: 10px;
+    margin-bottom: 60px;
 }
 
 .projectContainer {
@@ -43,4 +43,10 @@
     height: 40px;
     width: 40px;
     color: black;
+}
+
+.dashedBorder {
+    border-bottom: 2px dashed #000; /* Dashed border with black color */
+    padding-bottom: 20px; /* Optional: Add space below the border */
+    margin-bottom: 20px; /* Optional: Add space between elements */
 }

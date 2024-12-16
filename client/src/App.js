@@ -12,6 +12,8 @@ function App() {
   const [projectStack, setProjectStack] = useState([])
   const [projectPoints, setProjectPoints] = useState([])
 
+  const [viewCv, setViewCv] = useState(false)
+
   // Fetch user info
   useEffect(() => {
     fetch("/profile")
@@ -101,7 +103,10 @@ function App() {
   return (
     <div id="app-layout">
       {/* Horizontal Navigation */}
-      <HorizontalNav userProfile={userProfile} />
+      <HorizontalNav 
+        userProfile={userProfile} 
+        setViewCv={setViewCv}
+      />
 
       <div id="main-layout">
         {/* Vertical Navigation */}
@@ -123,7 +128,10 @@ function App() {
             setProjectStack: setProjectStack,
 
             projectPoints: projectPoints,
-            setProjectPoints: setProjectPoints
+            setProjectPoints: setProjectPoints,
+
+            viewCv: viewCv,
+            setViewCv: setViewCv
           }}/>
         </main>
       </div>

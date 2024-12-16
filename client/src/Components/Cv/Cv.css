@@ -1,0 +1,20 @@
+#cvPopUp{
+    z-index: 5;
+    position: fixed; /* Keep it above other elements and fixed on screen */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full width of the viewport */
+    height: 100vh; /* Full height of the viewport */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain; /* Ensure the CV fits within the viewport */
+    background-color: rgba(0, 0, 0, 0.8); /* Add a semi-transparent background for effect */
+}
+
+#cvExit{
+    color: red;
+    position: absolute;
+    right: 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}

@@ -12,11 +12,21 @@ export default function ProjectStack({ projectStack, projectId }) {
     return (
         <div
             style={{
-                display: "flex",
-                flexDirection: "row"
+                width: "100%",
+                border: "solid",
+                borderRadius: "20px",
+                textAlign: "center",
+                backgroundColor: "black",
+                color: "white",
+                height: "35px",
+                display: "flex", 
+                alignItems: "center", 
+                justifyContent: "center", 
             }}
         >
-            <p>{stackNames}</p>
+            <p>
+                {stackNames}
+            </p>
         </div>
     );
 }

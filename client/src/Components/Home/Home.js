@@ -5,12 +5,17 @@ import { useEffect, useState } from "react"
 
 import TechStack from "../TechStack/TechStack"
 import ProjectPortfolio from "../ProjectPortfolio/ProjectPortfolio"
+import Email from "../Email/Email"
+import CV from "../Cv/Cv"
 
 export default function Home(){
     const appData = useOutletContext()
     console.log(appData)
 
     const userDetails = appData.userProfile[0]
+
+    const viewCv = appData.viewCv
+    const setViewCv = appData.setViewCv
 
     const [profileDetails, setProfileDetails] = useState([])
 
@@ -24,6 +29,14 @@ export default function Home(){
         <div
             id="infoContainer"
         >
+            {viewCv ?
+                <CV 
+                setViewCv={setViewCv}
+                />
+                :
+                null
+            }
+
             <div
                 id="userIntroContainer"
             >
@@ -83,6 +96,10 @@ export default function Home(){
             />
 
             <ProjectPortfolio 
+                appData={appData}
+            />
+
+            <Email 
                 appData={appData}
             />
         </div>
