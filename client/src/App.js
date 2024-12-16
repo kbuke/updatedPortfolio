@@ -11,6 +11,7 @@ function App() {
   const [projectPortfolio, setProjectPortfolio] = useState([])
   const [projectStack, setProjectStack] = useState([])
   const [projectPoints, setProjectPoints] = useState([])
+  const [loggedUser, setLoggedUser] = useState()
 
   const [viewCv, setViewCv] = useState(false)
 
@@ -98,7 +99,25 @@ function App() {
         console.error("Fetch error:", error)
       })
   }, [])
-  console.log(projectPoints)
+  
+  //Fetch logged user
+  useEffect(() => {
+    fetch("/check_session")
+    .then(r => {
+      if(r.ok) {
+        return r.json()
+        .then(loggedUser => {
+          if(loggedUser.message === "Unauthorized user"){
+            setLoggedUser(null)
+          } else {
+            setLoggedUser(loggedUser)
+          }
+        })
+      }
+    })
+  }, [])
+
+  console.log(loggedUser)
 
   return (
     <div id="app-layout">
@@ -110,7 +129,7 @@ function App() {
 
       <div id="main-layout">
         {/* Vertical Navigation */}
-        <VerticalNav userProfile={userProfile} />
+        <VerticalNav userProfile={userProfile} loggedUser={loggedUser}/>
 
         {/* Outlet for child components */}
         <main id="content">
@@ -131,7 +150,10 @@ function App() {
             setProjectPoints: setProjectPoints,
 
             viewCv: viewCv,
-            setViewCv: setViewCv
+            setViewCv: setViewCv,
+
+            loggedUser: loggedUser,
+            setLoggedUser: setLoggedUser
           }}/>
         </main>
       </div>

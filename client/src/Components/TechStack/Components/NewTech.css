@@ -1,0 +1,16 @@
+#popUp{
+    z-index: 4;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#newTechContainer{
+    background-color: white;
+    width: 60%;
+}

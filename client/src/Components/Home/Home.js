@@ -17,6 +17,9 @@ export default function Home(){
     const viewCv = appData.viewCv
     const setViewCv = appData.setViewCv
 
+    const techStack = appData.techStack
+    const setTechStack = appData.setTechStack
+
     const [profileDetails, setProfileDetails] = useState([])
 
     useEffect(() => (
@@ -93,6 +96,8 @@ export default function Home(){
 
             <TechStack 
                 appData={appData}
+                techStack={techStack}
+                setTechStack={setTechStack}
             />
 
             <ProjectPortfolio 
