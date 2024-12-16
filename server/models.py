@@ -90,6 +90,7 @@ class Projects(db.Model, SerializerMixin):
     image = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     git_hub_link = db.Column(db.String, nullable=True)
+    web_link = db.Column(db.String, nullable=True)
     blog_link = db.Column(db.String, nullable=True)
     start_date = db.Column(db.Date, nullable=False)
     end_date = db.Column(db.Date, nullable=False)

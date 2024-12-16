@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import "./NewProjectPoint.css"
+
 export default function NewProjectPoint({
     projectId,
     setAddPoint,
@@ -46,9 +48,12 @@ export default function NewProjectPoint({
                     placeholder="Enter new point"
                     onChange={(e) => setNewProjectPoint(e.target.value)}
                     type="text"
+                    style={{marginBottom: "10px", width: "80%"}}
                 />
 
-                <div>
+                <div
+                    style={{gap: "20px", display: "grid"}}
+                >
                     <button
                         type="submit"
                     >

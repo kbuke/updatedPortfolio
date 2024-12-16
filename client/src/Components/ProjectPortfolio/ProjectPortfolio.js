@@ -58,6 +58,7 @@ export default function ProjectPortfolio({
         const projectImg = project.image;
         const gitLink = project.git_hub_link;
         const blogLink = project.blog_link;
+        const webLink = project.web_link;
     
         const isLastProject = index === sortProjects.length - 1;
 
@@ -116,7 +117,17 @@ export default function ProjectPortfolio({
                                         <AiFillMediumCircle className="projectIcon" />
                                     </Link>
                                 )}
+                                {webLink && (
+                                    <Link to={webLink} className="projectLinks">
+                                        <TbWorldWww  className="projectIcon"/>
+                                    </Link>
+                                )}
                             </div>
+                            {loggedUser ?
+                                addPoints
+                                :
+                                null
+                            }
                         </div>
                     </div>
                 ) : (
@@ -141,6 +152,11 @@ export default function ProjectPortfolio({
                                 {blogLink && (
                                     <Link to={blogLink} className="projectLinks">
                                         <AiFillMediumCircle className="projectIcon" />
+                                    </Link>
+                                )}
+                                {webLink && (
+                                    <Link to={webLink} className="projectLinks">
+                                        <TbWorldWww  className="projectIcon"/>
                                     </Link>
                                 )}
                             </div>

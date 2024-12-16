@@ -163,6 +163,7 @@ class Project(Resource):
                 image = json.get("newImg"),
                 name = json.get("newName"),
                 git_hub_link = json.get("gitLink"),
+                web_link = json.get("webLink"),
                 blog_link = json.get("blogLink"),
                 start_date = start_date,
                 end_date = end_date,

@@ -13,6 +13,7 @@ export default function AddProject({
     const[newImg, setNewImg] = useState("")
     const[newName, setNewName] = useState("")
     const[gitLink, setGitLink] = useState("")
+    const[webLink, setWebLink] = useState("")
     const[blogLink, setBlogLink] = useState("")
     const[startDate, setStartDate] = useState("")
     const[endDate, setEndDate] = useState("")
@@ -87,6 +88,12 @@ export default function AddProject({
                     placeholder="Enter link of your blog"
                     className="newProjectInput"
                     onChange={(e) => setBlogLink(e.target.value)}
+                />
+
+                <input 
+                    placeholder="Enter link of website"
+                    className="newProjectInput"
+                    onChange={(e) => setWebLink(e.target.value)}
                 />
 
                 <input 
