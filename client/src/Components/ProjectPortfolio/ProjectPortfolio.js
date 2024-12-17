@@ -7,6 +7,7 @@ import ProjectStack from "./Components/ProjectStack"
 import ProjectPoints from "./Components/ProjectPoints"
 import AddProject from "./Components/AddProject"
 import NewProjectPoint from "./Components/NewProjectPoint"
+import AddProjectStack from "./Components/AddProjectStack"
 
 import { FaGithub } from "react-icons/fa";
 import { AiFillMediumCircle } from "react-icons/ai";
@@ -14,6 +15,7 @@ import { TbWorldWww } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa";
 
 import { Link } from "react-router-dom"
+import { FaP } from "react-icons/fa6"
 
 export default function ProjectPortfolio({
     appData
@@ -36,15 +38,24 @@ export default function ProjectPortfolio({
     const allInstitutes = appData.allInstitutes
     const setAllInstitutes = appData.setAllInstitutes
 
+    const techStack = appData.techStack
+    const setTechStack = appData.setTechStack
+
     const [newProject, setNewProject] = useState(false)
 
     const [addPoint, setAddPoint] = useState(false)
+    const [addTech, setAddTech] = useState(false)
     const [projectId, setProjectId] = useState()
 
     console.log(sortProjects)
 
     const addProjectPoints = (projectId) => {
         setAddPoint(true)
+        setProjectId(projectId)
+    }
+
+    const addProjectStack = (projectId) => {
+        setAddTech(true)
         setProjectId(projectId)
     }
 
@@ -65,11 +76,9 @@ export default function ProjectPortfolio({
 
         const addPoints = 
             <div
+                className="portfolioOptionsButtons"
                 style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    alignItems: "center",
-                    gap: "20px"
+                    backgroundColor: "rgb(37, 92, 194);"
                 }}
             >
                 <p>Add Points</p>
@@ -80,6 +89,18 @@ export default function ProjectPortfolio({
                     onClick={() => addProjectPoints(projectId)}
                 />
             </div>
+        
+        const addTech = 
+                    <div
+                        className="portfolioOptionsButtons"
+                        style={{backgroundColor: "rgb(4, 148, 76)", marginTop: "10PX"}}
+                    >
+                        <p>Add Stack</p>
+                        <FaPlus 
+                            style={{cursor: "pointer"}}
+                            onClick={() => addProjectStack(projectId)}
+                        />
+                    </div>
     
         return (
             <div
@@ -129,6 +150,12 @@ export default function ProjectPortfolio({
                                 :
                                 null
                             }
+
+                            {loggedUser ?
+                                addTech
+                                :
+                                null
+                            }
                         </div>
                     </div>
                 ) : (
@@ -167,6 +194,12 @@ export default function ProjectPortfolio({
                                 :
                                 null
                             }
+
+                            {loggedUser ?
+                                addTech
+                                :
+                                null
+                            }
                         </div>
                         <div className="projectContainer">
                             <img src={laptop} className="laptopPng" />
@@ -188,6 +221,18 @@ export default function ProjectPortfolio({
                     setAddPoint={setAddPoint}
                     projectPoints={projectPoints}
                     setProjectPoints={setPojectPoints}
+                />
+                :
+                null
+            }
+
+            {addTech ?
+                <AddProjectStack 
+                    projectId={projectId}
+                    techStack={techStack}
+                    setProjectStack={setProjectStack}
+                    projectStack={projectStack}
+                    setNewStack = {setAddTech}
                 />
                 :
                 null

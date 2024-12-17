@@ -50,3 +50,15 @@
     padding-bottom: 20px; /* Optional: Add space below the border */
     margin-bottom: 20px; /* Optional: Add space between elements */
 }
+
+.portfolioOptionsButtons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    background-color: rgb(37, 92, 194);
+    color: white;
+    width: 30%;
+    justify-content: center;
+    border-radius: 20px;
+}

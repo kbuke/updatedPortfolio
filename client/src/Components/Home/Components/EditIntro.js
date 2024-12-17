@@ -6,8 +6,7 @@ import "./EditIntro.css"
 export default function EditIntro({
     setEditInfo,
     specificUserInfo,
-    setSpecificUserInfo,
-    setUserInfo
+    setSpecificUserInfo
 }){
     console.log(specificUserInfo)
     const [userPic, setUserPic] = useState(specificUserInfo.image)
@@ -38,7 +37,7 @@ export default function EditIntro({
         })
         .then(newUserInfo => {
             if(newUserInfo){
-                setUserInfo(specificUserInfo.id === newUserInfo.id ? newUserInfo : specificUserInfo)
+                setSpecificUserInfo(specificUserInfo.id === newUserInfo.id ? newUserInfo : specificUserInfo)
             }
         })
         setEditInfo(false)
