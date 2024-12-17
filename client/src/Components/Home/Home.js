@@ -8,6 +8,7 @@ import ProjectPortfolio from "../ProjectPortfolio/ProjectPortfolio"
 import Email from "../Email/Email"
 import CV from "../Cv/Cv"
 import LogOut from "./Components/LogOut"
+import EditIntro from "./Components/EditIntro"
 
 import { CiLogout } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
@@ -26,6 +27,7 @@ export default function Home(){
 
     const [profileDetails, setProfileDetails] = useState([])
     const [logOut, setLogOut] = useState(false)
+    const [editInfo, setEditInfo] = useState(false)
 
     const loggedUser = appData.loggedUser
     const setLoggedUser = appData.setLoggedUser
@@ -44,7 +46,7 @@ export default function Home(){
         >
             {viewCv ?
                 <CV 
-                setViewCv={setViewCv}
+                    setViewCv={setViewCv}
                 />
                 :
                 null
@@ -55,6 +57,17 @@ export default function Home(){
                     loggedUser={loggedUser}
                     setLoggedUser={setLoggedUser}
                     setLogOut={setLogOut}
+                />
+                :
+                null
+            }
+
+            {editInfo ?
+                <EditIntro 
+                    setEditInfo={setEditInfo}
+                    specificUserInfo = {profileDetails}
+                    setSpecificUserInfo = {setProfileDetails}
+                    setUserInfo = {setLoggedUser}
                 />
                 :
                 null
@@ -91,6 +104,7 @@ export default function Home(){
 
                             <CiEdit 
                                 className="loggedIntroOptions"
+                                onClick={() => setEditInfo(true)}
                             />
                         </div>
                         :
