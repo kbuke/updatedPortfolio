@@ -1,5 +1,6 @@
 #specificInstitutesContainer{
     border-top: solid;
+    margin-bottom: 20px;
 }
 
 #instituteRole{
@@ -31,5 +32,11 @@
 .addInstitute{
     height: 80px;
     width: 80px;
+    cursor: pointer;
+}
+
+.deleteInstituteButton{
+    height: 30px;
+    width: 30px;
     cursor: pointer;
 }

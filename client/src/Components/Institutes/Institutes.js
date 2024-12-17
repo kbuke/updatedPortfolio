@@ -2,8 +2,10 @@ import { useEffect, useState } from "react"
 import "./Institutes.css"
 
 import { IoAddCircle } from "react-icons/io5";
+import { RiDeleteBin7Fill } from "react-icons/ri";
 
 import AddInstitute from "./Components/AddInstitute";
+import DeleteInstitute from "./Components/DeleteInstitute";
 
 export default function Insititutes({
     allInstitutes,
@@ -11,6 +13,8 @@ export default function Insititutes({
 }){
     const [institutes, setInstitutes] = useState([])
     const [addInstitute, setAddInstitute] = useState(false)
+    const [deleteInstitute, setDeleteInstitute] = useState(false)
+    const [selectedInstituteId, setSelectedInstituteId] = useState()
 
     useEffect(() => (
         setInstitutes(allInstitutes.map(institute => institute))
@@ -18,16 +22,30 @@ export default function Insititutes({
 
     console.log(institutes)
 
+    const handleDeleteInstitute = (instituteId) => {
+        setDeleteInstitute(true)
+        setSelectedInstituteId(instituteId)
+    }
+
     const renderInstitutes = institutes.map((institute, index) => (
         <div
-            key={index}
-            className="instituteContainer"
+            style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}
         >
-            <img 
-                src={institute.logo}
-                className="instituteLogo"
+            <div
+                key={index}
+                className="instituteContainer"
+            >
+                <img 
+                    src={institute.logo}
+                    className="instituteLogo"
+                />
+                <p>{institute.name}</p>
+            </div>
+
+            <RiDeleteBin7Fill 
+                className="deleteInstituteButton"
+                onClick={() => handleDeleteInstitute(institute.id)}
             />
-            <p>{institute.name}</p>
         </div>
     ))
     return(
@@ -43,6 +61,18 @@ export default function Insititutes({
                 :
                 null
             }
+
+            {deleteInstitute ?
+                <DeleteInstitute 
+                    setDeleteInstitute={setDeleteInstitute}
+                    selectedInstituteId={selectedInstituteId}
+                    setAllInstitutes={setAllInstitutes}
+                    setSelectedInstituteId={setSelectedInstituteId}
+                />
+                :
+                null
+            }
+
             <h1>Institutes</h1>
 
             <div

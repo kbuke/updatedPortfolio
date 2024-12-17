@@ -144,6 +144,27 @@ class Institutes(Resource):
                 "error": [str(e)]
             }, 400
 
+class InstituteId(Resource):
+    def get(self, id):
+        institute_info = Institute.query.filter(Institute.id==id).first()
+        if institute_info:
+            return make_response(institute_info.to_dict(), 201)
+        return{
+            "error": "Institute not found"
+        }, 404
+    
+    def delete(self, id):
+        institute_info = Institute.query.filter(Institute.id==id).first()
+        if institute_info:
+            db.session.delete(institute_info)
+            db.session.commit()
+            return{
+                "message": "Institute deleted"
+            }, 200 
+        return {
+            "error": "Institute not found"
+        }, 404
+
 class Project(Resource):
     def get(self):
         projects = [project.to_dict() for project in Projects.query.all()]
@@ -410,6 +431,7 @@ api.add_resource(Technologies, '/technologies')
 api.add_resource(TechnologiesId, '/technologies/<int:id>')
 
 api.add_resource(Institutes, '/institutes')
+api.add_resource(InstituteId, '/institutes/<int:id>')
 
 api.add_resource(Project, '/projects')
 api.add_resource(ProjectId, '/projects/<int:id>')
