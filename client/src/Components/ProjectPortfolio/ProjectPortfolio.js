@@ -70,7 +70,8 @@ export default function ProjectPortfolio({
         const gitLink = project.git_hub_link;
         const blogLink = project.blog_link;
         const webLink = project.web_link;
-        console.log(webLink)
+        const projectInstitute = project?.institutes?.logo
+        console.log(project)
     
         const isLastProject = index === sortProjects.length - 1;
 
@@ -127,6 +128,8 @@ export default function ProjectPortfolio({
                                 gitLink={gitLink}
                                 blogLink={blogLink}
                                 projectPoints={projectPoints}
+                                loggedUser={loggedUser}
+                                setPojectPoints={setPojectPoints}
                             />
                             <div id="projectLinkContainer">
                                 {gitLink && (
@@ -145,6 +148,20 @@ export default function ProjectPortfolio({
                                     </Link>
                                 )}
                             </div>
+                            
+                            {projectInstitute ?
+                                <div
+                                    className="projectInstituteContainer"
+                                >
+                                    <img 
+                                        src={projectInstitute}
+                                        className="projectInstituteImg"
+                                    />
+                                </div>
+                                :
+                                null
+                            }
+
                             {loggedUser ?
                                 addPoints
                                 :
@@ -170,6 +187,7 @@ export default function ProjectPortfolio({
                                 gitLink={gitLink}
                                 blogLink={blogLink}
                                 projectPoints={projectPoints}
+                                loggedUser={loggedUser}
                             />
                             <div id="projectLinkContainer">
                                 {gitLink && (
@@ -188,6 +206,19 @@ export default function ProjectPortfolio({
                                     </Link>
                                 )}
                             </div>
+                            
+                            {projectInstitute ?
+                                <div
+                                    className="projectInstituteContainer"
+                                >
+                                    <img 
+                                        src={projectInstitute}
+                                        className="projectInstituteImg"
+                                    />
+                                </div>
+                                :
+                                null
+                            }
 
                             {loggedUser ?
                                 addPoints

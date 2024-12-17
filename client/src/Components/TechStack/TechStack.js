@@ -12,7 +12,7 @@ import NewTech from "./Components/NewTech";
 export default function TechStack({
     appData
 }){
-    const [viewStack, setViewStack] = useState("Grid")
+    const [viewStack, setViewStack] = useState("Img")
 
     const [renderedStack, setRenderedStack] = useState([])
 
@@ -49,16 +49,17 @@ export default function TechStack({
                 }
 
                 <>
-                    <IoMdGrid 
-                        className="techOptions"
-                        id={viewStack==="Grid" ? "chosenTechView" : ""}
-                        onClick={() => setViewStack("Grid")}
-                    />
 
                     <CiImageOn 
                         className="techOptions"
                         id={viewStack==="Img" ? "chosenTechView" : ""}
                         onClick={() => setViewStack("Img")}
+                    />
+
+                    <IoMdGrid 
+                        className="techOptions"
+                        id={viewStack==="Grid" ? "chosenTechView" : ""}
+                        onClick={() => setViewStack("Grid")}
                     />
 
                     {loggedUser ?
