@@ -31,7 +31,9 @@ export default function ProjectPoints({
 
     const renderPoints = specificPoints.map((point, index) => (
         loggedUser ?
-            <div>
+            <div
+                key={index}
+            >
                 <li
                     key={index}
                 >

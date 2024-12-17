@@ -79,7 +79,7 @@ export default function ProjectPortfolio({
             <div
                 className="portfolioOptionsButtons"
                 style={{
-                    backgroundColor: "rgb(37, 92, 194);"
+                    backgroundColor: "rgb(37, 92, 194)"
                 }}
             >
                 <p>Add Points</p>

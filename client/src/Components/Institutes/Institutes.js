@@ -30,9 +30,9 @@ export default function Insititutes({
     const renderInstitutes = institutes.map((institute, index) => (
         <div
             style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}
+            key={index}
         >
             <div
-                key={index}
                 className="instituteContainer"
             >
                 <img 

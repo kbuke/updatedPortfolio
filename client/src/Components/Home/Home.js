@@ -29,6 +29,7 @@ export default function Home(){
     const [profileDetails, setProfileDetails] = useState([])
     const [logOut, setLogOut] = useState(false)
     const [editInfo, setEditInfo] = useState(false)
+    const [sendEmail, setSendEmail] = useState(false)
 
     const loggedUser = appData.loggedUser
     const setLoggedUser = appData.setLoggedUser
@@ -124,6 +125,7 @@ export default function Home(){
                     >
                         <div
                             className="outerContact"
+                            onClick={() => setSendEmail(true)}
                         >
                             <div
                                 className="innerContact"
@@ -163,6 +165,14 @@ export default function Home(){
                 <Insititutes 
                     allInstitutes={allInstitutes}
                     setAllInstitutes={setAllInstitutes}
+                />
+                :
+                null
+            }
+
+            {sendEmail ?
+                <Email 
+                    setSendEmail={setSendEmail}
                 />
                 :
                 null

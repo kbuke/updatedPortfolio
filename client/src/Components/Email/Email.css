@@ -1,7 +1,67 @@
 #emailContainer{
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    margin-top: 40px;
-    border-top: solid;
-    margin-bottom: 20px;
+    width: 60%;
+    background-color: white;
+    height: 80%;
+    border-radius: 24px;
+    display: flex;
+    flex-direction: column;
+}
+
+#emailHeader{
+    border-bottom: solid;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.emailIcon{
+    left: 10px;
+}
+
+.emailCrossIcon{
+    color: red;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
+.emailContainer{
+    margin-left: 10px;
+    margin-right: 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.emailInput,
+.emailMessage{
+    margin-left: 20PX;
+    margin-right: 20px;
+    border: none;
+    border-bottom: solid;
+    width: 60%;
+}
+
+.emailMessage{
+    height: 100px;
+}
+
+#sendEmailButton{
+    height: 40px;
+    width: 90px;
+}
+
+#sendEmailButton{
+    justify-self: center;
+    align-self: center;
+    border-radius: 24px;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 150px;
+    height: 60px;
 }

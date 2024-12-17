@@ -380,6 +380,7 @@ class Email(Resource):
     def post(self):
         json = request.get_json()
 
+
         # Extract the email details from the request body
         recipient = json.get("userEmail")  # Your email (where the message is sent)
         sender_name = json.get("respondAddress")  # The sender's email (provided by the user)
