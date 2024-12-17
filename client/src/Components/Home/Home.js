@@ -7,6 +7,10 @@ import TechStack from "../TechStack/TechStack"
 import ProjectPortfolio from "../ProjectPortfolio/ProjectPortfolio"
 import Email from "../Email/Email"
 import CV from "../Cv/Cv"
+import LogOut from "./Components/LogOut"
+
+import { CiLogout } from "react-icons/ci";
+import { CiEdit } from "react-icons/ci";
 
 export default function Home(){
     const appData = useOutletContext()
@@ -21,6 +25,12 @@ export default function Home(){
     const setTechStack = appData.setTechStack
 
     const [profileDetails, setProfileDetails] = useState([])
+    const [logOut, setLogOut] = useState(false)
+
+    const loggedUser = appData.loggedUser
+    const setLoggedUser = appData.setLoggedUser
+
+    console.log(loggedUser)
 
     useEffect(() => (
         setProfileDetails(userDetails)
@@ -35,6 +45,16 @@ export default function Home(){
             {viewCv ?
                 <CV 
                 setViewCv={setViewCv}
+                />
+                :
+                null
+            }
+
+            {logOut? 
+                <LogOut 
+                    loggedUser={loggedUser}
+                    setLoggedUser={setLoggedUser}
+                    setLogOut={setLogOut}
                 />
                 :
                 null
@@ -60,6 +80,23 @@ export default function Home(){
 
                     <h3>Software Engineer</h3>
 
+                    {loggedUser ?
+                        <div
+                            id="loggedUserOptionsContainer"
+                        >
+                            <CiLogout 
+                                className="loggedIntroOptions"
+                                onClick={() => setLogOut(true)}
+                            />
+
+                            <CiEdit 
+                                className="loggedIntroOptions"
+                            />
+                        </div>
+                        :
+                        null
+                    }
+
                     <p>
                         {profileDetails?.profile_bio}
                     </p>
@@ -78,8 +115,8 @@ export default function Home(){
                                 >
                                     Let's Talk
                                 </h2>
+                            </div>
                         </div>
-                    </div>
                     </div>
                 </div>
 

@@ -1,0 +1,19 @@
+#logOutButtonContainer{
+    background-color: white;
+    width: 60%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#logOutButtonGrid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+}
+
+.logOutButton{
+    width: 100%;
+}

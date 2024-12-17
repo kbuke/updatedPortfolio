@@ -96,5 +96,19 @@
     text-align: center;
 }
 
+.loggedIntroOptions{
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    border: solid;
+    border-radius: 50%;
+}
+
+#loggedUserOptionsContainer{
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+}
+
 
 

@@ -214,9 +214,13 @@ export default function ProjectPortfolio({
                 }
 
                 <h1>Project Portfolio</h1>
-                <FaPlus 
-                    onClick={() => setNewProject(true)}
-                />
+                {loggedUser ?
+                    <FaPlus 
+                        onClick={() => setNewProject(true)}
+                    />
+                    :
+                    null
+                }
             </div>
             <div
                 id="projectPortfolioContainer"

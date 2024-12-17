@@ -308,17 +308,20 @@ class ProjectLanguage(Resource):
 class Login(Resource):
     def post(self):
         json = request.get_json()
-        email = json.get("email").strip()  # Remove any accidental spaces
+        email = json.get("email").strip()
         password = json.get("password")
+
+        print(f"Login attempt: email={email}, password={'*' * len(password)}")
 
         if not email or not password:
             return {"error": "Email and Password required"}, 400
 
         user = Profile.query.filter(Profile.email == email).first()
-        print(f"Queried user: {user}")  # This should print None if email doesn't match exactly
+        print(f"Queried user: {user}")
 
         if user and user.authenticate(password):
             session["user_id"] = user.id
+            print(f"Session set: {session}")
             return user.to_dict(), 200
 
         return {"error": "Invalid email or password"}, 401
@@ -326,20 +329,26 @@ class Login(Resource):
 
 class Logout(Resource):
     def delete(self):
+        print(f"Session before logout: {session}")
         user_id = session.get("user_id")
         if user_id:
             session.pop("user_id")
-            return {}, 204 
+            print("User logged out successfully")
+            return {}, 204
+        print("Unauthorized logout attempt")
         return {"message": "Unauthorized"}, 401
+
 
 class CheckSession(Resource):
     def get(self):
+        print(f"Session during CheckSession: {session}")
         user_id = session.get("user_id")
         if user_id:
             user = Profile.query.filter(Profile.id == user_id).first()
             if user:
-                return user.to_dict(), 200 
-        return {"message": "Unauthorized user"}
+                return user.to_dict(), 200
+        return {"message": "Unauthorized user"}, 401
+
 
 
 class Email(Resource):
