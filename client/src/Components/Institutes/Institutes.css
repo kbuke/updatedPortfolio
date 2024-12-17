@@ -1,0 +1,35 @@
+#specificInstitutesContainer{
+    border-top: solid;
+}
+
+#instituteRole{
+    display: flex;
+    flex-direction: column;
+}
+
+.instituteLogo{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: solid;
+}
+
+.instituteContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#instituteRole{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+}
+
+.addInstitute{
+    height: 80px;
+    width: 80px;
+    cursor: pointer;
+}

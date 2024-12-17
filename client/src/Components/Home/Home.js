@@ -9,6 +9,7 @@ import Email from "../Email/Email"
 import CV from "../Cv/Cv"
 import LogOut from "./Components/LogOut"
 import EditIntro from "./Components/EditIntro"
+import Insititutes from "../Institutes/Institutes"
 
 import { CiLogout } from "react-icons/ci";
 import { CiEdit } from "react-icons/ci";
@@ -31,6 +32,9 @@ export default function Home(){
 
     const loggedUser = appData.loggedUser
     const setLoggedUser = appData.setLoggedUser
+
+    const allInstitutes = appData.allInstitutes
+    const setAllInstitutes = appData.setAllInstitutes
 
     console.log(loggedUser)
 
@@ -155,9 +159,14 @@ export default function Home(){
                 appData={appData}
             />
 
-            <Email 
-                appData={appData}
-            />
+            {loggedUser ?
+                <Insititutes 
+                    allInstitutes={allInstitutes}
+                    setAllInstitutes={setAllInstitutes}
+                />
+                :
+                null
+            }
         </div>
     )
 }
