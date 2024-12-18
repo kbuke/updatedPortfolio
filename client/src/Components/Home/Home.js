@@ -116,8 +116,21 @@ export default function Home(){
                         null
                     }
 
-                    <p>
-                        {profileDetails?.profile_bio}
+                    <p
+                        style={{marginBottom: "0px", width: "800px"}}
+                    >
+                        {profileDetails?.profile_bio?
+                            profileDetails.profile_bio.split("\n").map((line, index) => (
+                                <span
+                                    key={index}
+                                >
+                                    {line}
+                                    <br />
+                                </span>
+                            ))
+                            :
+                            null
+                        }
                     </p>
 
                     <div

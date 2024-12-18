@@ -7,17 +7,27 @@
     flex-direction: column;
 }
 
-#emailHeader{
+#emailHeader {
     border-bottom: solid;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between; /* Pushes items to far ends */
+    padding: 0 20px; /* Adds padding for spacing */
 }
 
-.emailIcon{
-    left: 10px;
+.emailIcon {
+    height: 25px;
+    width: 25px;
 }
+
+.emailCrossIcon {
+    color: red;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
 
 .emailCrossIcon{
     color: red;
@@ -36,27 +46,7 @@
     margin-top: 30px;
 }
 
-.emailInput,
-.emailMessage{
-    margin-left: 20PX;
-    margin-right: 20px;
-    border: none;
-    border-bottom: solid;
-    width: 60%;
-}
-
-.emailMessage{
-    height: 100px;
-}
-
-#sendEmailButton{
-    height: 40px;
-    width: 90px;
-}
-
-#sendEmailButton{
-    justify-self: center;
-    align-self: center;
+#sendEmailButton {
     border-radius: 24px;
     background-color: green;
     color: white;
@@ -64,4 +54,21 @@
     cursor: pointer;
     width: 150px;
     height: 60px;
+    margin: 20px auto; /* Centers the button horizontally */
+    display: block; /* Allows auto margin to center */
+}
+
+.emailInput,
+.emailMessage {
+    margin: 0 auto; /* Centers input and message horizontally */
+    display: block; /* Ensures block-level rendering */
+    border: none;
+    border-bottom: solid;
+    width: 60%; /* Consistent width */
+    padding: 10px; /* Optional: Adds padding for better UI */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+}
+
+.emailMessage {
+    height: 100px;
 }

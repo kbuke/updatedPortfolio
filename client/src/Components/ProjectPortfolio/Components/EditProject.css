@@ -1,0 +1,15 @@
+#editProjectForm{
+    border-radius: 8px;
+    width: 600px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+}
+
+.editProjectInput{
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+}

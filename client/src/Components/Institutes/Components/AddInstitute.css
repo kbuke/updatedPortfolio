@@ -1,0 +1,21 @@
+#instituteContainer{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: white;
+    text-align: center;
+}
+
+#newInstituteButtonGrid{
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+}
+
+.instituteInput{
+    margin-left: 10px;
+    margin-right: 10px;
+}

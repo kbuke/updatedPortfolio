@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import "./AddInstitute.css"
+
 export default function AddInstitute({
     allInstitutes,
     setAllInstitutes,

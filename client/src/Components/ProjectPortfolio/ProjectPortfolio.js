@@ -8,6 +8,7 @@ import ProjectPoints from "./Components/ProjectPoints"
 import AddProject from "./Components/AddProject"
 import NewProjectPoint from "./Components/NewProjectPoint"
 import AddProjectStack from "./Components/AddProjectStack"
+import EditProject from "./Components/EditProject"
 
 import { FaGithub } from "react-icons/fa";
 import { AiFillMediumCircle } from "react-icons/ai";
@@ -16,6 +17,7 @@ import { FaPlus } from "react-icons/fa";
 
 import { Link } from "react-router-dom"
 import { FaP } from "react-icons/fa6"
+import { FaEdit } from "react-icons/fa";
 
 export default function ProjectPortfolio({
     appData
@@ -47,6 +49,15 @@ export default function ProjectPortfolio({
     const [addTech, setAddTech] = useState(false)
     const [projectId, setProjectId] = useState()
 
+    const [editProject, setEditProject] = useState(false)
+
+    const [projectImg, setProjectImg] = useState("")
+    const [projectName, setProjectName] = useState("")
+    const [projectGit, setProjectGit] = useState("")
+    const [projectBlog, setProjectBlog] = useState("")
+    const [projectStart, setProjectStart] = useState("")
+    const [projectEnd, setProjectEnd] = useState("")
+
     console.log(sortProjects)
 
     const addProjectPoints = (projectId) => {
@@ -57,6 +68,17 @@ export default function ProjectPortfolio({
     const addProjectStack = (projectId) => {
         setAddTech(true)
         setProjectId(projectId)
+    }
+
+    const handleEditProject = (projectId, projectImg, projectName, projectGit, projectBlog, projectStart, projectEnd) => {
+        setProjectId(projectId)
+        setProjectImg(projectImg)
+        setProjectName(projectName)
+        setProjectGit(projectGit? projectGit : "")
+        setProjectBlog(projectBlog? projectBlog : "")
+        setProjectStart(projectStart)
+        setProjectEnd(projectEnd)
+        setEditProject(true)
     }
 
     useEffect(() => (
@@ -121,7 +143,26 @@ export default function ProjectPortfolio({
                             <ProjectStack projectId={projectId} projectStack={projectStack} />
                         </div>
                         <div>
-                            <h2>{projectName}</h2>
+                            <div
+                                style={{display: "flex", alignItems: "center", gap: "20px", cursor: "pointer"}}
+                            >
+                                <h2>{projectName}</h2>
+                                {loggedUser ? 
+                                    <FaEdit 
+                                        onClick={() => handleEditProject(
+                                            project.id, 
+                                            project.image, 
+                                            project.name, 
+                                            project.git_hub_link, 
+                                            project.blog_link,
+                                            project.start_date,
+                                            project.end_date
+                                    )}
+                                    /> 
+                                    : 
+                                    null
+                                }
+                            </div>
                             <ProjectPoints
                                 projectId={projectId}
                                 projectName={projectName}
@@ -181,7 +222,26 @@ export default function ProjectPortfolio({
                         className={!isLastProject ? "dashedBorder" : ""} // Apply class conditionally
                     >
                         <div>
-                            <h2>{projectName}</h2>
+                            <div
+                                style={{display: "flex", alignItems: "center", gap: "20px", cursor: "pointer"}}
+                            >
+                                <h2>{projectName}</h2>
+                                {loggedUser ? 
+                                    <FaEdit 
+                                        onClick={() => handleEditProject(
+                                            project.id, 
+                                            project.image, 
+                                            project.name, 
+                                            project.git_hub_link, 
+                                            project.blog_link,
+                                            project.start_date,
+                                            project.end_date
+                                        )}
+                                    /> 
+                                    : 
+                                    null
+                                }
+                            </div>
                             <ProjectPoints
                                 projectId={projectId}
                                 gitLink={gitLink}
@@ -284,6 +344,29 @@ export default function ProjectPortfolio({
                         setProjectPortfolio={setProjectPortfolio}
                         allInstitutes={allInstitutes}
                         setAllInstitutes={setAllInstitutes}
+                    />
+                    :
+                    null
+                }
+
+                {editProject ?
+                    <EditProject 
+                        projectImg={projectImg}
+                        setProjectImg={setProjectImg}
+                        projectName={projectName}
+                        setProjectName={setProjectName}
+                        projectGit={projectGit}
+                        setProjectGit={setProjectGit}
+                        projectBlog={projectBlog}
+                        setProjectBlog={setProjectBlog}
+                        projectStart={projectStart}
+                        setProjectStart={setProjectStart}
+                        projectEnd={projectEnd}
+                        setProjectEnd={setProjectEnd}
+                        setEditProject={setEditProject}
+                        projectId={projectId}
+                        projects={projectPortfolio}
+                        setProjects={setProjectPortfolio}
                     />
                     :
                     null

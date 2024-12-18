@@ -1,8 +1,8 @@
-"""initial migration
+"""create portfolio table
 
-Revision ID: d8cf4393770e
+Revision ID: a88ae65387c2
 Revises: 
-Create Date: 2024-12-14 15:31:08.280654
+Create Date: 2024-12-18 15:09:13.845003
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd8cf4393770e'
+revision = 'a88ae65387c2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,6 +59,7 @@ def upgrade():
     sa.Column('image', sa.String(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('git_hub_link', sa.String(), nullable=True),
+    sa.Column('web_link', sa.String(), nullable=True),
     sa.Column('blog_link', sa.String(), nullable=True),
     sa.Column('start_date', sa.Date(), nullable=False),
     sa.Column('end_date', sa.Date(), nullable=False),
@@ -70,7 +71,7 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('logo', sa.String(), nullable=True),
     sa.Column('name', sa.String(), nullable=False),
-    sa.Column('experience', sa.String(), nullable=False),
+    sa.Column('experience', sa.Integer(), nullable=False),
     sa.Column('project_id', sa.Integer(), nullable=True),
     sa.ForeignKeyConstraint(['project_id'], ['projects.id'], ),
     sa.PrimaryKeyConstraint('id')

@@ -112,7 +112,7 @@ export default function Email({
                     {emailInput("Please enter the name of your company", "senderCompany")}
                     {emailInput("Please enter the SUBJECT you wish to talk about", "emailSubject")}
                     <div
-                        className="emailContainer"
+                        className="emailMessageContainer"
                     >
                         <textarea 
                             placeholder="Please type a message for me to respond to"
