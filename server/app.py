@@ -17,10 +17,13 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-@app.route('/')
-@app.route('/<int:id>')
-def index(id=0):
-    return render_template("index.html")
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def index(path):
+    if path and os.path.exists(f"../client/build/{path}"):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
 
 
 class Profiles(Resource):
