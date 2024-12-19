@@ -93,7 +93,7 @@ class Projects(db.Model, SerializerMixin):
     web_link = db.Column(db.String, nullable=True)
     blog_link = db.Column(db.String, nullable=True)
     start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
+    _end_date = db.Column("end_date", db.Date, nullable=True)
 
     # Set up relations with cascade delete
     institute_id = db.Column(db.Integer, db.ForeignKey("institutes.id"))
@@ -105,6 +105,19 @@ class Projects(db.Model, SerializerMixin):
         "-institutes.projects",
         "-points.projects",
     )
+
+    @property
+    def end_date(self):
+        if self._end_date is None:
+            return "Current"
+        return self._end_date
+
+    @end_date.setter
+    def end_date(self, value):
+        if value == "Current":
+            self._end_date = None
+        else:
+            self._end_date = value
 
 
 class ProjectPoints(db.Model, SerializerMixin):

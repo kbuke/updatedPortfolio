@@ -1,5 +1,6 @@
 
-import "./EditProject.css"
+import "./EditProject.css";
+import { useState } from "react";
 
 export default function EditProject({
     projectImg,
@@ -18,23 +19,27 @@ export default function EditProject({
     projectId,
     projects,
     setProjects
-}){
-    console.log(`I am attempting to alter project ${projectId}: ${projectName}`)
-    //Set up decorator for creating input
-    const editProjectInput = (value, state, text, valueType) => {
-        return(
+}) {
+    const [isCurrentProject, setIsCurrentProject] = useState(false);
+
+    console.log(`I am attempting to alter project ${projectId}: ${projectName}`);
+
+    // Set up decorator for creating input
+    const editProjectInput = (value, state, text, valueType, isDisabled = false) => {
+        return (
             <input 
                 placeholder={text}
                 className="editProjectInput"
                 value={value}
                 onChange={(e) => state(e.target.value)}
                 type={valueType}
+                disabled={isDisabled}
             />
-        )
-    }
+        );
+    };
 
-    const handleEdit = e => {
-        e.preventDefault()
+    const handleEdit = (e) => {
+        e.preventDefault();
         fetch(`/projects/${projectId}`, {
             method: "PATCH",
             headers: {
@@ -46,55 +51,49 @@ export default function EditProject({
                 git_hub_link: projectGit,
                 blog_link: projectBlog,
                 start_date: projectStart,
-                end_date: projectEnd
+                end_date: isCurrentProject ? "present" : projectEnd // Send "present" if currently working
             })
         })
-        .then(r => {
-            if(r.ok){
-                return r.json()
+        .then((r) => {
+            if (r.ok) {
+                return r.json();
             } else {
-                return null 
+                return null;
             }
         })
-        .then(editInfo => {
-            if(editInfo){
-                setProjects(projects.map(oldProjects => 
-                    oldProjects.id === editInfo.id ? editInfo : oldProjects
-                ))
+        .then((editInfo) => {
+            if (editInfo) {
+                setProjects(projects.map((oldProject) => 
+                    oldProject.id === editInfo.id ? editInfo : oldProject
+                ));
             }
         })
-        .then(setEditProject(false))
-    }
+        .then(() => setEditProject(false));
+    };
 
-
-    return(
-        <div
-            id="popUp"
-        >
-            <form
-                id="editProjectForm"
-                onSubmit={handleEdit}
-            >
+    return (
+        <div id="popUp">
+            <form id="editProjectForm" onSubmit={handleEdit}>
                 <h2>Edit Project Info</h2>
 
                 {editProjectInput(
                     projectImg, 
                     setProjectImg,
-                    "Please enter Projects Image",
+                    "Please enter Project's Image",
                     "text"
                 )}
 
                 {editProjectInput(
                     projectName,
                     setProjectName,
-                    "Please enter Projects Name",
+                    "Please enter Project's Name",
                     "text"
                 )}
 
                 {editProjectInput(
                     projectGit,
                     setProjectGit,
-                    "Please enter link to git url",
+                    "Please enter link to GitHub URL",
                     "text"
                 )}
 
@@ -112,27 +111,38 @@ export default function EditProject({
                     "date"
                 )}
 
+                <div>
+                    <label>
+                        <input 
+                            type="checkbox" 
+                            checked={isCurrentProject} 
+                            onChange={(e) => {
+                                setIsCurrentProject(e.target.checked);
+                                if (e.target.checked) setProjectEnd(""); // Clear end date if "currently working" is checked
+                            }}
+                        />
+                        I am currently working on this project
+                    </label>
+                </div>
+
                 {editProjectInput(
                     projectEnd,
                     setProjectEnd,
                     "Please enter end date",
-                    "date"
+                    "date",
+                    isCurrentProject // Disable if "currently working" is checked
                 )}
 
                 <div>
-                    <button
-                        type="submit"
-                    >
+                    <button type="submit">
                         Submit
                     </button>
 
-                    <button
-                        onClick={() => setEditProject(false)}
-                    >
+                    <button type="button" onClick={() => setEditProject(false)}>
                         Cancel
                     </button>
                 </div>
             </form>
         </div>
-    )
+    );
 }
