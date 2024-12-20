@@ -176,22 +176,22 @@ class Project(Resource):
     def post(self):
         json = request.get_json()
         try:
-            # Convert dates to date format
+            # Convert dates to date format or handle "Current"
             start_date = datetime.strptime(json.get("startDate"), "%Y-%m-%d").date() if json.get("startDate") else None
-            end_date = datetime.strptime(json.get("endDate"), "%Y-%m-%d").date() if json.get("endDate") else None
-            
+            end_date = None if json.get("endDate") == "Current" else datetime.strptime(json.get("endDate"), "%Y-%m-%d").date() if json.get("endDate") else None
+        
             # Convert institute_id to integer
             institute_id = int(json.get("instituteId")) if json.get("instituteId") else None
-            
+
             new_project = Projects(
-                image = json.get("newImg"),
-                name = json.get("newName"),
-                git_hub_link = json.get("gitLink"),
-                web_link = json.get("webLink"),
-                blog_link = json.get("blogLink"),
-                start_date = start_date,
-                end_date = end_date,
-                institute_id = institute_id
+                image=json.get("newImg"),
+                name=json.get("newName"),
+                git_hub_link=json.get("gitLink"),
+                web_link=json.get("webLink"),
+                blog_link=json.get("blogLink"),
+                start_date=start_date,
+                end_date=end_date,
+                institute_id=institute_id
             )
             db.session.add(new_project)
             db.session.commit()
@@ -200,6 +200,7 @@ class Project(Resource):
             return {
                 "error": [str(e)]
             }, 400
+
 
 class ProjectId(Resource):
     def get(self, id):
@@ -210,34 +211,39 @@ class ProjectId(Resource):
     
     def patch(self, id):
         data = request.get_json()
-        project_info = Projects.query.filter(Projects.id==id).first()
+        project_info = Projects.query.filter(Projects.id == id).first()
 
-        if project_info:
-            try:
-                if "start_date" in data:
-                    try:
-                        data["start_date"] = datetime.strptime(data["start_date"], "%Y-%m-%d").date()
-                    except ValueError:
-                        return {"error": "Invalid start_date format"}, 400
-                
-                if "end_date" in data:
+        if not project_info:
+            return {"error": "Project not found"}, 404
+
+        try:
+            # Handle start_date
+            if "start_date" in data:
+                try:
+                    data["start_date"] = datetime.strptime(data["start_date"], "%Y-%m-%d").date()
+                except ValueError:
+                    return {"error": "Invalid start_date format"}, 400
+
+            # Handle end_date
+            if "end_date" in data:
+                if data["end_date"] in ["Current", "present"]:
+                    data["end_date"] = None
+                else:
                     try:
                         data["end_date"] = datetime.strptime(data["end_date"], "%Y-%m-%d").date()
                     except ValueError:
-                        return{"error": "Invalid end_date format"}, 400
+                        print("Invalid end_date format")
+                        return {"error": "Invalid end_date format"}, 400
 
-                for attr, value in data.items():
-                    setattr(project_info, attr, value)
-                db.session.commit()
+            # Update attributes
+            for attr, value in data.items():
+                setattr(project_info, attr, value)
 
-                return make_response(project_info.to_dict(), 202)
-            except ValueError:
-                return {
-                    "error": ["Validation Error"]
-                }, 404 
-        return {
-            "error": "Project not found"
-        }, 404
+            db.session.commit()
+            return make_response(project_info.to_dict(), 202)
+        except Exception as e:
+            return {"error": [str(e)]}, 400
+
     
     def delete(self, id):
         project_info = Projects.query.filter(Projects.id==id).first()

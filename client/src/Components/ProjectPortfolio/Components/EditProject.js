@@ -1,4 +1,3 @@
-
 import "./EditProject.css";
 import { useState } from "react";
 
@@ -51,14 +50,16 @@ export default function EditProject({
                 git_hub_link: projectGit,
                 blog_link: projectBlog,
                 start_date: projectStart,
-                end_date: isCurrentProject ? "present" : projectEnd // Send "present" if currently working
+                end_date: isCurrentProject ? "present" : (projectEnd || null)
             })
         })
         .then((r) => {
             if (r.ok) {
                 return r.json();
             } else {
-                return null;
+                return r.json().then((err) => {
+                    throw new Error(err.error || "Failed to update project");
+                });
             }
         })
         .then((editInfo) => {
@@ -68,7 +69,10 @@ export default function EditProject({
                 ));
             }
         })
-        .then(() => setEditProject(false));
+        .catch((err) => {
+            console.error("Error updating project:", err.message);
+        })
+        .finally(() => setEditProject(false));        
     };
 
     return (
